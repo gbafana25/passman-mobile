@@ -25,6 +25,9 @@ var users = [];
 var _base_site = "";
 var converted = "";
 
+String _new_user = "";
+String _new_pass = "";
+
 
 var _siteList = <String>[];
 
@@ -221,6 +224,17 @@ Future<void> _getPreferences() async {
   _gpg_passphrase = await prefs.getString('password') ?? "";
 }
 
+Future<void> _addFile() async {
+  var bytes = utf8.encode("test");
+  var encoded = base64.encode(bytes);
+  http.Response f = await helper.put(
+      "https://api.github.com/repos/$_username/$_repo_name/contents/test.txt",
+      body: {"message": "test", "content": encoded},
+  );
+  print(f.body);
+
+}
+
 void main() {
 
   runApp(Manager());
@@ -255,6 +269,50 @@ class _ManagerState extends State<ManagerHome> {
         title: Text("Passman"),
         backgroundColor: Colors.black,
         foregroundColor: Colors.white54,
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+
+          showDialog(
+              context: context, builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text("Add credentials"),
+                    actions: <Widget>[
+                      TextFormField(
+                        decoration: InputDecoration(
+                          labelText: "Account name",
+
+                        ),
+                        onChanged: (String? value) {
+                          _new_user = value ?? "";
+                        },
+                      ),
+
+                      TextFormField(
+                        decoration: InputDecoration(
+                          labelText: "Account password",
+
+                        ),
+                        onChanged: (String? value) {
+                          _new_pass = value ?? "";
+                        },
+                      ),
+
+                      TextButton(
+                        onPressed: () {
+                          //_addFile();
+                          Navigator.pop(context);
+                        },
+                        child: Text("Add"),
+                      )
+                    ],
+                  );
+              }
+          );
+        },
+        child: const Icon(Icons.add),
+        backgroundColor: Colors.black,
       ),
 
       drawer: Drawer(

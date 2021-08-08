@@ -8,10 +8,5 @@ Encrypted password files are stored locally, and are updated with a remote priva
 
 
 ## TODO
-- fix behavior where username buttons have to be clicked twice in order for the password to be copied
+- add feature to add credentials from the mobile app
 - make clipboard erase password after one use (like with xclip, if possible)
-- ~save settings in config page to local app storage~
-- ~add OAuth app settings to config page (client id, client secret, callback uri)~
-- ~copy decrypted passwords to clipboard~
-- ~decrypt passwords when buttons are clicked in "saved logins" section~
-- ~download raw encrypted password files, organize in same way as desktop (website_name/username)~
