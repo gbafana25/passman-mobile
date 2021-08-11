@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.passman">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="passman"
         android:icon="@mipmap/ic_launcher">
@@ -54,6 +55,7 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
 
     </application>
 </manifest>
